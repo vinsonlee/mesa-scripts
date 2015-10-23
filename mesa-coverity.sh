@@ -26,6 +26,7 @@ git pull
 --enable-debug \
 --enable-dri \
 --enable-dri3 \
+--enable-egl \
 --enable-gallium-egl \
 --enable-gallium-tests \
 --enable-gbm \
@@ -39,6 +40,7 @@ git pull
 --enable-opencl-icd \
 --enable-opengl \
 --enable-r600-llvm-compiler \
+--enable-selinux \
 --enable-shader-cache \
 --enable-sysfs \
 --enable-texture-float \
@@ -46,9 +48,9 @@ git pull
 --enable-vdpau \
 --enable-xa \
 --enable-xvmc \
---with-egl-platforms=drm,x11,wayland \
+--with-egl-platforms=drm,wayland,x11 \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
---with-gallium-drivers=i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast
+--with-gallium-drivers=i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast,virgl
 
 # Create build script.
 cat > build.sh << EOL
