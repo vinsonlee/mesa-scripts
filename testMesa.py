@@ -17,14 +17,14 @@ mesa_dir = '/home/vlee/mesa.test'
 llvm_dir = '/home/vlee/llvm'
 test_list = 'tests/quick.py'
 run_once = True
-#run_once = False
+# run_once = False
 
-#drivers = ('llvmpipe', 'softpipe')
-#drivers = ('swrast',)
-#drivers = ('softpipe',)
-#drivers = ('vmwgfx',)
-#drivers = ('llvmpipe',)
-#drivers = ('llvmpipe', 'swrast')
+# drivers = ('llvmpipe', 'softpipe')
+# drivers = ('swrast',)
+# drivers = ('softpipe',)
+# drivers = ('vmwgfx',)
+# drivers = ('llvmpipe',)
+# drivers = ('llvmpipe', 'swrast')
 drivers = ('llvmpipe', 'softpipe', 'swrast')
 
 if __name__ == "__main__":
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         (status, output) = commands.getstatusoutput(
             'cd %s && git pull' % mesa_dir)
 
-        if (status != 0):
+        if status != 0:
             print '%s git pull failed' % mesa_dir
             time.sleep(300)
             continue
@@ -47,11 +47,11 @@ if __name__ == "__main__":
             'cd %s && git rev-parse --short HEAD'
             % mesa_dir)
 
-        if (status != 0):
+        if status != 0:
             print 'git-log failed'
             sys.exit(1)
 
-        if (output == 'Already up-to-date.' and not force):
+        if output == 'Already up-to-date.' and not force:
             print 'up-do-date with commit %s' % commit
             time.sleep(300)
             continue
@@ -61,8 +61,8 @@ if __name__ == "__main__":
 
         # build piglit
         print 'Building piglit'
-        status = os.system("cd %s && git pull && cmake -DPIGLIT_USE_WAFFLE=1 . && make -i > make.log 2>&1"
-                           % piglit_dir)
+        status = os.system("cd %s && git pull && cmake . && make > make.log 2>&1" % piglit_dir)
+        # status = 0
         if status != 0:
             print 'piglit build failed'
             sys.exit(0)
@@ -70,9 +70,9 @@ if __name__ == "__main__":
         # build LLVM
         if 'llvmpipe' in drivers or 'vmwgfx' in drivers:
             print 'Building LLVM'
-            status = os.system(
-                "cd %s/build && git pull && make > make.log 2>&1 && sudo make install > install.log 2>&1"
-                % llvm_dir)
+            # command = "cd %s && git pull && mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=ON ../ && make > make.log 2>&1" % llvm_dir
+            command = "cd %s/build && git pull && make > make.log 2>&1" % llvm_dir
+            status = os.system(command)
             if (status != 0):
                 print 'LLVM build failed'
                 sys.exit(0)
@@ -83,7 +83,8 @@ if __name__ == "__main__":
         # SCons build.
         if 'llvmpipe' in drivers or 'vmwgfx' in drivers:
             print 'SCons build'
-            status = os.system("cd %s && scons texture_float=yes > scons.log 2>&1" % mesa_dir)
+            llvm_path = '%s/build/bin' % llvm_dir
+            status = os.system("cd %s && PATH=%s:$PATH scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
             if (status != 0):
                 print 'SCons build failed'
                 continue
@@ -126,12 +127,12 @@ if __name__ == "__main__":
                 env_vars += " LIBGL_ALWAYS_SOFTWARE=true"
 
             # Run tests.
-            #os.system("cd %s && LD_LIBRARY_PATH=%s LIBGL_DRIVERS_PATH=%s ./piglit-run.py %s results/%s/%s"
-            #          % (piglit_dir,
-            #             ld_library_path,
-            #             libgl_drivers_path,
-            #             test_list,
-            #             driver, output_dir))
+            # os.system("cd %s && LD_LIBRARY_PATH=%s LIBGL_DRIVERS_PATH=%s ./piglit-run.py %s results/%s/%s"
+            #           % (piglit_dir,
+            #              ld_library_path,
+            #              libgl_drivers_path,
+            #              test_list,
+            #              driver, output_dir))
             os.system("cd %s && %s ./piglit-run.py --no-concurrency %s results/%s/%s"
                       % (piglit_dir,
                          env_vars,
