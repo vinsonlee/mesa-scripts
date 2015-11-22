@@ -55,6 +55,8 @@ git pull
 # Create build script.
 cat > build.sh << EOL
 #!/bin/bash
+set -e
+set -x
 make
 make -C src/gallium/drivers/vc4
 make check
