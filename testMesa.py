@@ -117,8 +117,8 @@ if __name__ == "__main__":
                 ld_library_path = '%s/build/linux-x86_64-debug/gallium/targets/libgl-xlib' % mesa_dir
                 libgl_drivers_path = ld_library_path
             elif driver == 'vmwgfx':
-                ld_library_path = '%s/build/linux-x86_64-debug/lib' % mesa_dir
-                libgl_drivers_path = '%s/build/linux-x86_64-debug/gallium/targets/dri-vmwgfx' % mesa_dir
+                ld_library_path = '%s/build/linux-x86_64-debug/gallium/targets/dri' % mesa_dir
+                libgl_drivers_path = ld_library_path
             else:
                 assert False
 
