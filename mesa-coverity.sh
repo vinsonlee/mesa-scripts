@@ -27,7 +27,6 @@ git pull
 --enable-dri \
 --enable-dri3 \
 --enable-egl \
---enable-gallium-egl \
 --enable-gallium-tests \
 --enable-gbm \
 --enable-gles1 \
