@@ -52,6 +52,9 @@ git pull
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
 --with-gallium-drivers=i915,ilo,nouveau,r300,r600,radeonsi,svga,swrast,virgl
 
+# configure option needed on Fedora
+--with-clang-libdir=/usr/lib
+
 # Create build script.
 cat > build.sh << EOL
 #!/bin/bash
