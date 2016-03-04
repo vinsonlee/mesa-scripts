@@ -133,7 +133,7 @@ if __name__ == "__main__":
             #              libgl_drivers_path,
             #              test_list,
             #              driver, output_dir))
-            os.system("cd %s && %s ./piglit-run.py --no-concurrency %s results/%s/%s"
+            os.system("cd %s && %s ./piglit-run.py %s results/%s/%s"
                       % (piglit_dir,
                          env_vars,
                          test_list,
