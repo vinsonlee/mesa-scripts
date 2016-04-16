@@ -44,6 +44,7 @@ git pull
 --enable-sysfs \
 --enable-texture-float \
 --enable-va \
+--enable-valgrind \
 --enable-vdpau \
 --enable-xa \
 --enable-xvmc \
