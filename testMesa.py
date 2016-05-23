@@ -80,15 +80,6 @@ if __name__ == "__main__":
         # Build and test Mesa
         print 'Testing commit %s' % (commit)
 
-        # SCons build.
-        if 'llvmpipe' in drivers or 'vmwgfx' in drivers:
-            print 'SCons build'
-            llvm_path = '%s/build/bin' % llvm_dir
-            status = os.system("cd %s && PATH=%s:$PATH scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
-            if (status != 0):
-                print 'SCons build failed'
-                continue
-
         # Make build
         # Must do a clean build because incremental build sometimes
         # gives bad results.
@@ -99,6 +90,16 @@ if __name__ == "__main__":
             status = os.system("cd %s && make > make.log 2>&1" % mesa_dir)
             if (status != 0):
                 print "make failed"
+                continue
+
+        # SCons build.
+        if 'llvmpipe' in drivers or 'vmwgfx' in drivers:
+            print 'SCons build'
+            llvm_path = '%s/build/bin' % llvm_dir
+            # status = os.system("cd %s && PATH=%s:$PATH scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
+            status = os.system("cd %s && PATH=%s:$PATH SCONS_LIB_DIR==~/Downloads/scons-2.4.1/engine python ~/Downloads/scons-2.4.1/script/scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
+            if (status != 0):
+                print 'SCons build failed'
                 continue
 
         _time = datetime.datetime.today().strftime('%Y%m%d-%H%M')
