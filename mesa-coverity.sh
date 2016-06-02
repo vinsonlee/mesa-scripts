@@ -64,6 +64,12 @@ set -x
 make
 make -C src/gallium/drivers/vc4
 make check
+# freedreno doesn't fully build on Linux but we can build most of the source.
+ln -sf ~/Downloads/libdrm-2.4.68/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
+ln -sf ~/Downloads/libdrm-2.4.68/include/drm/drm.h src/gallium/drivers/freedreno/drm.h
+ln -sf ~/Downloads/libdrm-2.4.68/include/drm/drm_mode.h src/gallium/drivers/freedreno/drm_mode.h
+ln -sf ~/Downloads/libdrm-2.4.68/freedreno/freedreno_ringbuffer.h src/gallium/drivers/freedreno/freedreno_ringbuffer.h
+make -C src/gallium/drivers/freedreno -i
 scons -j 1 texture_float=yes
 EOL
 
