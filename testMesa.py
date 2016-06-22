@@ -96,8 +96,7 @@ if __name__ == "__main__":
         if 'llvmpipe' in drivers or 'vmwgfx' in drivers:
             print 'SCons build'
             llvm_path = '%s/build/bin' % llvm_dir
-            # status = os.system("cd %s && PATH=%s:$PATH scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
-            status = os.system("cd %s && PATH=%s:$PATH SCONS_LIB_DIR==~/Downloads/scons-2.4.1/engine python ~/Downloads/scons-2.4.1/script/scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
+            status = os.system("cd %s && PATH=%s:$PATH scons texture_float=yes > scons.log 2>&1" % (mesa_dir, llvm_path))
             if (status != 0):
                 print 'SCons build failed'
                 continue
