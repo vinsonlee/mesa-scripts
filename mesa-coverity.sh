@@ -12,7 +12,7 @@ set -x
 token='abcedefghi'
 
 # Set Coverity path
-export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-7.7.0.4/bin
+export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-8.5.0/bin
 
 project='mesa'
 

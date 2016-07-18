@@ -11,7 +11,7 @@ set -x
 token='abcedefghi'
 
 # Set Coverity path
-export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-7.7.0.4/bin
+export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-8.5.0/bin
 
 project='piglit'
 
@@ -20,6 +20,9 @@ me=`basename "$0"`
 git clean -dfxq --exclude $me --exclude build.log
 
 git pull
+
+cov-configure --comptype gcc --compiler cc --template
+cov-configure --comptype g++ --compiler c++ --template
 
 cmake -DPIGLIT_BUILD_CL_TESTS=1
 
