@@ -51,7 +51,7 @@ git pull
 --with-egl-platforms=drm,wayland,x11 \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
 --with-gallium-drivers=i915,ilo,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
---with-vulkan-drivers=intel
+--with-vulkan-drivers=intel,radeon
 
 # configure option needed on Fedora
 # --with-clang-libdir=/usr/lib
