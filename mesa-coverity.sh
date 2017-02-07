@@ -12,7 +12,10 @@ set -x
 token='abcedefghi'
 
 # Set Coverity path
-export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-8.5.0/bin
+export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-8.5.0.5/bin
+
+cov-configure --comptype gcc --compiler cc --template
+cov-configure --comptype g++ --compiler c++ --template
 
 project='mesa'
 
@@ -50,7 +53,7 @@ git pull
 --enable-xvmc \
 --with-egl-platforms=drm,wayland,x11 \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
---with-gallium-drivers=i915,ilo,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
+--with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
 --with-vulkan-drivers=intel,radeon
 
 # configure option needed on Fedora
@@ -65,23 +68,37 @@ make
 make -C src/gallium/drivers/vc4
 make check
 # freedreno doesn't fully build on Linux but we can build most of the source.
-ln -sf ~/Downloads/libdrm-2.4.70/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
+ln -sf ~/Downloads/libdrm-2.4.75/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
 if [ ! -e src/gallium/drivers/freedreno/freedreno_drmif.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.70/include/drm/drm.h src/gallium/drivers/freedreno/drm.h
+ln -sf ~/Downloads/libdrm-2.4.75/include/drm/drm.h src/gallium/drivers/freedreno/drm.h
 if [ ! -e  src/gallium/drivers/freedreno/drm.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.70/include/drm/drm_mode.h src/gallium/drivers/freedreno/drm_mode.h
+ln -sf ~/Downloads/libdrm-2.4.75/include/drm/drm_mode.h src/gallium/drivers/freedreno/drm_mode.h
 if [ ! -e src/gallium/drivers/freedreno/drm_mode.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.70/freedreno/freedreno_ringbuffer.h src/gallium/drivers/freedreno/freedreno_ringbuffer.h
-if [ ! -e src/gallium/drivers/freedreno/freedreno_ringbuffer.h]; then
+ln -sf ~/Downloads/libdrm-2.4.75/freedreno/freedreno_ringbuffer.h src/gallium/drivers/freedreno/freedreno_ringbuffer.h
+if [ ! -e src/gallium/drivers/freedreno/freedreno_ringbuffer.h ]; then
     exit 1
 fi
 make -C src/gallium/drivers/freedreno -i
+# Build as much of etnaviv.
+ln -sf ~/Downloads/libdrm-2.4.75/etnaviv/etnaviv_drmif.h src/gallium/drivers/etnaviv/etnaviv_drmif.h
+if [ ! -e src/gallium/drivers/etnaviv/etnaviv_drmif.h ]; then
+    exit 1
+fi
+ln -sf ~/Downloads/libdrm-2.4.75/include/drm/drm.h src/gallium/drivers/etnaviv/drm.h
+if [ ! -e  src/gallium/drivers/etnaviv/drm.h ]; then
+    exit 1
+fi
+ln -sf ~/Downloads/libdrm-2.4.75/include/drm/drm_mode.h src/gallium/drivers/etnaviv/drm_mode.h
+if [ ! -e src/gallium/drivers/etnaviv/drm_mode.h ]; then
+    exit 1
+fi
+make -C src/gallium/drivers/etnaviv -i
 scons -j 1 texture_float=yes
 EOL
 
