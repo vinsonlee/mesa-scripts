@@ -36,6 +36,7 @@ git pull
 --enable-gles2 \
 --enable-glx \
 --enable-glx-tls \
+--enable-libunwind \
 --enable-nine \
 --enable-omx \
 --enable-opencl \
