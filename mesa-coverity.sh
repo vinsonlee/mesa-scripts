@@ -49,9 +49,9 @@ git pull
 --enable-vdpau \
 --enable-xa \
 --enable-xvmc \
---with-egl-platforms=drm,wayland,x11 \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
 --with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
+--with-platforms=drm,wayland,x11 \
 --with-vulkan-drivers=intel,radeon
 
 # configure option needed on Fedora
