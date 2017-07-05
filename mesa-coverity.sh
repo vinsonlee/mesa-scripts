@@ -64,9 +64,9 @@ set -e
 set -x
 make
 make check
-make -C src/gallium/drivers/vc4
 python src/broadcom/cle/gen_pack_header.py src/broadcom/cle/v3d_packet_v21.xml > src/broadcom/cle/v3d_packet_v21_pack.h
 cp src/gallium/drivers/vc4/kernel/vc4_packet.h src/gallium/drivers/vc4/
+make -C src/gallium/drivers/vc4
 
 # freedreno doesn't fully build on Linux but we can build most of the source.
 ln -sf ~/Downloads/libdrm-2.4.79/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
