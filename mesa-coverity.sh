@@ -99,6 +99,10 @@ ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm_mode.h src/gallium/drivers/etna
 if [ ! -e src/gallium/drivers/etnaviv/drm_mode.h ]; then
     exit 1
 fi
+ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm_fourcc.h src/gallium/drivers/etnaviv/drm_fourcc.h
+if [ ! -e src/gallium/drivers/etnaviv/drm_fourcc.h ]; then
+    exit 1
+fi
 make -C src/gallium/drivers/etnaviv -i
 scons -j 1 texture_float=yes
 EOL
