@@ -52,6 +52,7 @@ git pull
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
 --with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
 --with-platforms=drm,surfaceless,wayland,x11 \
+--with-swr-archs=avx,avx2,knl,skx \
 --with-vulkan-drivers=intel,radeon
 
 # configure option needed on Fedora
