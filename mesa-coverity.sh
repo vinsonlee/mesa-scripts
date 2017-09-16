@@ -38,7 +38,7 @@ git pull
 --enable-glx-tls \
 --enable-libunwind \
 --enable-nine \
---enable-omx \
+--enable-omx-bellagio \
 --enable-opencl \
 --enable-opencl-icd \
 --enable-opengl \
