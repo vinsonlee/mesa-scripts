@@ -12,7 +12,7 @@ set -x
 token='abcedefghi'
 
 # Set Coverity path
-export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-8.5.0.5/bin
+export PATH=$PATH:$HOME/Downloads/cov-analysis-linux64-2017.07/bin
 
 cov-configure --comptype gcc --compiler cc --template
 cov-configure --comptype g++ --compiler c++ --template
