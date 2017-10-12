@@ -69,37 +69,37 @@ make check
 make -C src/gallium/drivers/vc5
 
 # freedreno doesn't fully build on Linux but we can build most of the source.
-ln -sf ~/Downloads/libdrm-2.4.82/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
+ln -sf ~/Downloads/libdrm-2.4.84/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
 if [ ! -e src/gallium/drivers/freedreno/freedreno_drmif.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm.h src/gallium/drivers/freedreno/drm.h
+ln -sf ~/Downloads/libdrm-2.4.84/include/drm/drm.h src/gallium/drivers/freedreno/drm.h
 if [ ! -e  src/gallium/drivers/freedreno/drm.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm_mode.h src/gallium/drivers/freedreno/drm_mode.h
+ln -sf ~/Downloads/libdrm-2.4.84/include/drm/drm_mode.h src/gallium/drivers/freedreno/drm_mode.h
 if [ ! -e src/gallium/drivers/freedreno/drm_mode.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/freedreno/freedreno_ringbuffer.h src/gallium/drivers/freedreno/freedreno_ringbuffer.h
+ln -sf ~/Downloads/libdrm-2.4.84/freedreno/freedreno_ringbuffer.h src/gallium/drivers/freedreno/freedreno_ringbuffer.h
 if [ ! -e src/gallium/drivers/freedreno/freedreno_ringbuffer.h ]; then
     exit 1
 fi
 make -C src/gallium/drivers/freedreno -i
 # Build as much of etnaviv.
-ln -sf ~/Downloads/libdrm-2.4.82/etnaviv/etnaviv_drmif.h src/gallium/drivers/etnaviv/etnaviv_drmif.h
+ln -sf ~/Downloads/libdrm-2.4.84/etnaviv/etnaviv_drmif.h src/gallium/drivers/etnaviv/etnaviv_drmif.h
 if [ ! -e src/gallium/drivers/etnaviv/etnaviv_drmif.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm.h src/gallium/drivers/etnaviv/drm.h
+ln -sf ~/Downloads/libdrm-2.4.84/include/drm/drm.h src/gallium/drivers/etnaviv/drm.h
 if [ ! -e  src/gallium/drivers/etnaviv/drm.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm_mode.h src/gallium/drivers/etnaviv/drm_mode.h
+ln -sf ~/Downloads/libdrm-2.4.84/include/drm/drm_mode.h src/gallium/drivers/etnaviv/drm_mode.h
 if [ ! -e src/gallium/drivers/etnaviv/drm_mode.h ]; then
     exit 1
 fi
-ln -sf ~/Downloads/libdrm-2.4.82/include/drm/drm_fourcc.h src/gallium/drivers/etnaviv/drm_fourcc.h
+ln -sf ~/Downloads/libdrm-2.4.84/include/drm/drm_fourcc.h src/gallium/drivers/etnaviv/drm_fourcc.h
 if [ ! -e src/gallium/drivers/etnaviv/drm_fourcc.h ]; then
     exit 1
 fi
