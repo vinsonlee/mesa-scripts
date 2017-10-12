@@ -50,7 +50,7 @@ git pull
 --enable-xa \
 --enable-xvmc \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
---with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl \
+--with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,virgl,vc4 \
 --with-platforms=drm,surfaceless,wayland,x11 \
 --with-swr-archs=avx,avx2,knl,skx \
 --with-vulkan-drivers=intel,radeon
@@ -65,9 +65,6 @@ set -e
 set -x
 make
 make check
-python src/broadcom/cle/gen_pack_header.py src/broadcom/cle/v3d_packet_v21.xml > src/broadcom/cle/v3d_packet_v21_pack.h
-cp src/gallium/drivers/vc4/kernel/vc4_packet.h src/gallium/drivers/vc4/
-make -C src/gallium/drivers/vc4
 
 # freedreno doesn't fully build on Linux but we can build most of the source.
 ln -sf ~/Downloads/libdrm-2.4.82/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
