@@ -50,7 +50,7 @@ git pull
 --enable-xa \
 --enable-xvmc \
 --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
---with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,tegra,virgl,vc4 \
+--with-gallium-drivers=i915,nouveau,r300,r600,radeonsi,svga,swr,swrast,tegra,virgl,v3d,vc4 \
 --with-platforms=drm,surfaceless,wayland,x11 \
 --with-swr-archs=avx,avx2,knl,skx \
 --with-vulkan-drivers=intel,radeon
