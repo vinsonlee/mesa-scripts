@@ -66,7 +66,8 @@ set -x
 make
 make check
 
-make -C src/gallium/drivers/vc5
+cp include/drm-uapi/v3d_drm.h src/gallium/drivers/v3d/
+make -C src/gallium/drivers/v3d
 
 # freedreno doesn't fully build on Linux but we can build most of the source.
 ln -sf ~/Downloads/libdrm-2.4.84/freedreno/freedreno_drmif.h src/gallium/drivers/freedreno/freedreno_drmif.h
